@@ -91,20 +91,6 @@ export function destroyTooltip(step) {
 function setPosition(target, step, floatingUIOptions, shouldCenter) {
   return (
     computePosition(target, step.el, floatingUIOptions)
-      .then(floatingUIposition(step, shouldCenter))
-      // Wait before forcing focus.
-      .then(
-        (step) =>
-          new Promise((resolve) => {
-            setTimeout(() => resolve(step), 300);
-          })
-      )
-      // Replaces focusAfterRender modifier.
-      .then((step) => {
-        if (step && step.el) {
-          step.el.focus({ preventScroll: true });
-        }
-      })
   );
 }
 
